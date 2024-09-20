@@ -1,0 +1,64 @@
+import { Outlet, redirect, useLoaderData, useNavigate } from "react-router-dom";
+import Wrapper from "../assets/wrappers/Dashboard";
+import { BigSidebar, Navbar, SmallSidebar } from "../components";
+import { createContext, useContext, useState } from "react";
+import customFetch from "../utils/customFetch";
+import { toast } from "react-toastify";
+
+export const loader = async () => {
+  try {
+    const { data } = await customFetch.get("/users/current-user");
+    // return data;
+    return null;
+  } catch (error) {
+    return redirect("/");
+  }
+};
+
+//global context for toggling the sidebars and user logouts
+const DashboardContext = createContext();
+
+function DashboardLayout() {
+  const { user } = useLoaderData();
+  const navigate = useNavigate();
+  console.log(user);
+
+  // //temp user
+  // const user = { name: "Nafi" };
+
+  const [showSidebar, setShowSidebar] = useState(false);
+
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
+
+  const logoutUser = async () => {
+    navigate("/");
+    await customFetch.get("auth/logout");
+    toast.success("Logging out...");
+  };
+  return (
+    <DashboardContext.Provider
+      value={{ user, showSidebar, toggleSidebar, logoutUser }}
+    >
+      <Wrapper>
+        <main className="dashboard">
+          <SmallSidebar />
+          {/* display only one based on screen size */}
+          <BigSidebar />
+          <div>
+            <Navbar />
+            <div className="dashboard-page">
+              <Outlet context={{ user }} />
+            </div>
+          </div>
+        </main>
+      </Wrapper>
+    </DashboardContext.Provider>
+  );
+}
+
+//creating a custom hook to avoid exporting the main context
+export const useDashboardContext = () => useContext(DashboardContext);
+
+export default DashboardLayout;

@@ -1,5 +1,5 @@
 function Crisis() {
-  return <div>Crisis</div>;
+  return <h3>Crisis</h3>;
 }
 
 export default Crisis;

@@ -9,16 +9,16 @@ import Wrapper from "../assets/wrappers/Testing";
 import CrisisWrapper from "../assets/wrappers/CrisisContainer";
 import { useOutletContext } from "react-router-dom";
 import { CRISIS_STATUS, SEVERITY } from "../../../utils/constants";
-import { Form, redirect } from "react-router-dom";
+import { Form, redirect, useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
 import customFetch from "../utils/customFetch";
 import { createContext, useContext } from "react";
 
 export const loader = async () => {
   try {
-    const { data } = customFetch("/jobs");
-    // return data;
-    return null;
+    const { data } = await customFetch("/crisis");
+    console.log(data);
+    return { data };
   } catch (error) {
     toast.error(error?.response?.data?.msg);
     return error;
@@ -26,7 +26,9 @@ export const loader = async () => {
 };
 
 const AllCrisisContext = createContext();
-function Crisis() {
+function AllCrisis() {
+  const { data } = useLoaderData();
+  // console.log(data);
   return (
     <AllCrisisContext.Provider value={{ data }}>
       <SearchContainer />
@@ -65,4 +67,4 @@ function Crisis() {
 
 export const useAllCrisisContext = () => useContext(AllCrisisContext);
 
-export default Crisis;
+export default AllCrisis;

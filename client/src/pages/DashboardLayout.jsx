@@ -8,8 +8,7 @@ import { toast } from "react-toastify";
 export const loader = async () => {
   try {
     const { data } = await customFetch.get("/users/current-user");
-    // return data;
-    return null;
+    return data;
   } catch (error) {
     return redirect("/");
   }
@@ -19,9 +18,10 @@ export const loader = async () => {
 const DashboardContext = createContext();
 
 function DashboardLayout() {
-  const { user } = useLoaderData();
+  const user = useLoaderData();
+
   const navigate = useNavigate();
-  console.log(user);
+  // console.log(user);
 
   // //temp user
   // const user = { name: "Nafi" };
@@ -34,8 +34,8 @@ function DashboardLayout() {
 
   const logoutUser = async () => {
     navigate("/");
-    await customFetch.get("auth/logout");
-    toast.success("Logging out...");
+    await customFetch.get("/auth/logout");
+    toast.success("Logged out...");
   };
   return (
     <DashboardContext.Provider

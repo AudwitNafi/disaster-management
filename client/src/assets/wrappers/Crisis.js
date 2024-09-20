@@ -1,10 +1,11 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Wrapper = styled.article`
   background: var(--background-secondary-color);
   border-radius: var(--border-radius);
   display: grid;
   grid-template-rows: 1fr auto;
+  width: 400px;
   box-shadow: var(--shadow-2);
   header {
     padding: 1rem 1.5rem;
@@ -13,6 +14,10 @@ const Wrapper = styled.article`
     grid-template-columns: auto 1fr;
     align-items: center;
   }
+  img {
+    width: 100%;
+  }
+
   .main-icon {
     width: 60px;
     height: 60px;
@@ -37,6 +42,12 @@ const Wrapper = styled.article`
       color: var(--text-secondary-color);
     }
   }
+  .info {
+    width: 100%;
+    height: 100%;
+    margin-top: 1rem;
+    margin-left: 0.8rem;
+  }
   .content {
     padding: 1rem 1.5rem;
   }
@@ -50,6 +61,7 @@ const Wrapper = styled.article`
     @media (min-width: 576px) {
       grid-template-columns: 1fr 1fr;
     }
+    padding: 10px;
   }
   .status {
     border-radius: var(--border-radius);
@@ -75,6 +87,10 @@ const Wrapper = styled.article`
   }
   .edit-btn {
     margin-right: 0.5rem;
+  }
+  .description {
+    margin-left: 0.8rem;
+    margin-top: 20px;
   }
 `;
 

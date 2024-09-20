@@ -1,5 +1,9 @@
 import { verifyJWT } from "../utils/tokenUtils.js";
-
+import {
+  UnauthenticatedError,
+  UnauthorizedError,
+  BadRequestError,
+} from "../errors/customErrors.js";
 //verify whether the cookie is present
 export const authenticateUser = (req, res, next) => {
   const { token } = req.cookies;

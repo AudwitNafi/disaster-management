@@ -1,16 +1,4 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-// import Admin from "./pages/Admin";
-// import Login from "./pages/Login";
-// import Crisis from "./pages/Crisis";
-// import Donation from "./pages/Donation";
-// import HomeLayout from "./pages/HomeLayout";
-// import Inventory from "./pages/Inventory";
-// import Landing from "./pages/Landing";
-// import Profile from "./pages/Profile";
-// import Register from "./pages/Register";
-// import DashboardLayout from "./pages/DashboardLayout";
-// import Report from "./pages/Report";
-// import Volunteer from "./pages/Volunteer";
 import { action as registerAction } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
 import { loader as dashboardLoader } from "./pages/DashboardLayout";

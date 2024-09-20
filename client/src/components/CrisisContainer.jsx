@@ -3,15 +3,16 @@ import Wrapper from "../assets/wrappers/CrisisContainer";
 import { useAllCrisisContext } from "../pages/AllCrisis";
 
 function CrisisContainer() {
-  const { data } = useAllCrisisContext;
-  const { crises } = data;
-  if (crises.length === 0) {
-    return (
-      <Wrapper>
-        <h2>No Crisis Listed</h2>
-      </Wrapper>
-    );
-  }
+  const { data } = useAllCrisisContext();
+  const crises = data;
+  console.log(crises);
+  // if (crises.length === 0) {
+  //   return (
+  //     <Wrapper>
+  //       <h2>No Crisis Listed</h2>
+  //     </Wrapper>
+  //   );
+  // }
   return (
     <Wrapper>
       <div className="crisis">

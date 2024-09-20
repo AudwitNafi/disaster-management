@@ -1,9 +1,9 @@
 import pool from "../db.js";
 
 export const getAllCrises = async (req, res) => {
-  // res.status(200).json({ crises });
   console.log(req.user);
-  res.json({ message: "crises data received" });
+  const crises = await pool.query("SELECT * FROM crises");
+  res.json(crises.rows);
 };
 
 export const getCrisis = async (req, res) => {

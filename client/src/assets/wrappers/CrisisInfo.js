@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
@@ -12,6 +12,7 @@ const Wrapper = styled.div`
       color: var(--text-secondary-color);
     }
   }
+
   .job-text {
     text-transform: capitalize;
     letter-spacing: var(--letter-spacing);

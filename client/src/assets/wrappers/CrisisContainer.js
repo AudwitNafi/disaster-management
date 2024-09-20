@@ -10,9 +10,9 @@ const Wrapper = styled.section`
     margin-bottom: 1.5rem;
   }
   .crisis {
-    display: grid;
-    grid-template-columns: 1fr;
-    row-gap: 2rem;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
   }
   @media (min-width: 1120px) {
     .crisis {
@@ -22,3 +22,7 @@ const Wrapper = styled.section`
   }
 `;
 export default Wrapper;
+
+// display: grid;
+// grid-template-columns: 1fr;
+// row-gap: 2rem;

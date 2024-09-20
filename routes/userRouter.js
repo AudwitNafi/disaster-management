@@ -13,7 +13,7 @@ import {
 const router = Router();
 
 router.get("/current-user", getCurrentUser);
-router.get("/admin/app-stats", [authorizePermissions("admin"), getStats]);
+router.get("/admin/stats", [authorizePermissions("admin"), getStats]);
 router.patch(
   "/update-user",
   checkForTestUser,

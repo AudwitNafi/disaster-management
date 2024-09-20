@@ -1,5 +1,6 @@
 import pool from "../db.js";
 import bcrypt from "bcryptjs";
+import { UnauthenticatedError } from "../errors/customErrors.js";
 import { createJWT } from "../utils/tokenUtils.js";
 // const { body, validationResult } = require('express-validator');
 export const register = async (req, res) => {
@@ -15,6 +16,7 @@ export const register = async (req, res) => {
       phoneNumber,
       password,
     } = req.body;
+    console.log(username);
     // Check if username already exists
     const userExists = await pool.query(
       "SELECT * FROM users WHERE username = $1",
@@ -59,7 +61,6 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { username, password } = req.body;
-
     // Check if the user exists
     const userQuery = await pool.query(
       "SELECT * FROM users WHERE username = $1",
@@ -76,15 +77,19 @@ export const login = async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ error: "Invalid credentials" });
     }
+
+    //creating JWT token for loggedin status
     const token = createJWT({ userId: user.id, role: user.role });
     // res.json({ token });
     const oneDay = 1000 * 3600 * 24;
+    //storing token as a cookie
     res.cookie("token", token, {
       httpOnly: true, //causes the browser to automatically send the token with every request
       expires: new Date(Date.now() + oneDay),
       secure: process.env.NODE_ENV === "production",
     });
     res.status(200).json({ msg: "user logged in" });
+    console.log(`logged in user:${username}`);
 
     // res.send("User logged in");
   } catch (error) {
@@ -98,5 +103,5 @@ export const logout = (req, res) => {
     httpOnly: true,
     expires: new Date(Date.now()),
   });
-  res.status(StatusCodes.OK).json({ msg: "user logged out!" });
+  res.status(200).json({ msg: "user logged out!" });
 };

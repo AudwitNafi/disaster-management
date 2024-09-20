@@ -4,7 +4,7 @@ dotenv.config();
 import express from "express";
 const app = express();
 import morgan from "morgan";
-import cors from "cors";
+// import cors from "cors";
 import cookieParser from "cookie-parser";
 
 //routers
@@ -31,13 +31,17 @@ if (process.env.NODE_ENV === "development") {
 
 app.use(express.static(path.resolve(__dirname, "./client/dist")));
 app.use(morgan("dev"));
-app.use(cors());
+// app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use(errorHandlerMiddleware);
 //dashboard or homepage
 app.get("/", (req, res) => {
   res.send("Hello World");
+});
+
+app.get("/api/v1/test", (req, res) => {
+  res.json({ msg: "Hello World" });
 });
 
 //dashboard or homepage
@@ -47,12 +51,12 @@ app.post("/", (req, res) => {
 });
 
 //register and login route
-app.use("/auth", authRouter);
-app.use("/users", authenticateUser, userRouter);
-app.use("/crises", crisesRouter);
-app.use("/donations", donationsRouter);
-app.use("/inventory", inventoryRouter);
-app.use("/volunteers", volunteerRouter);
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/users", authenticateUser, userRouter);
+app.use("/api/v1/crisis", crisesRouter);
+app.use("/api/v1/donations", donationsRouter);
+app.use("/api/v1/inventory", inventoryRouter);
+app.use("/api/v1/volunteers", volunteerRouter);
 
 const port = process.env.PORT || 5100;
 

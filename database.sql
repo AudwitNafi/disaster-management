@@ -20,6 +20,7 @@ CREATE TABLE volunteer_profiles (
     user_id INTEGER PRIMARY KEY,
     tasks TEXT,
     task_location VARCHAR(255),
+    status VARCHAR(20) NOT NULL CHECK (status IN ('pending approval', 'available', 'assigned')),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
@@ -27,7 +28,7 @@ CREATE TABLE volunteer_profiles (
 CREATE TABLE donations (
     id SERIAL PRIMARY KEY,
     amount DECIMAL(10, 2) NOT NULL CHECK (amount > 0),
-    donor_info VARCHAR(255),
+    donor_name VARCHAR(255),
     date TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 

@@ -3,6 +3,7 @@ export { default as AllCrisis } from "./AllCrisis";
 export { default as Dashboard } from "./Dashboard";
 export { default as DashboardLayout } from "./DashboardLayout";
 export { default as Donation } from "./Donation";
+export { default as EditCrisis } from "./EditCrisis";
 export { default as HomeLayout } from "./HomeLayout";
 export { default as Inventory } from "./Inventory";
 export { default as Landing } from "./Landing";

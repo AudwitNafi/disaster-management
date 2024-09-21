@@ -45,9 +45,9 @@ export const register = async (req, res) => {
 
     const newUserId = newUser.rows[0].id;
     const newVolunteer = await pool.query(
-      `INSERT INTO volunteer_profiles (user_id, tasks, task_location)
-         VALUES ($1, $2, $3)`,
-      [newUserId, "none", location || null] // Handle optional values for age and location
+      `INSERT INTO volunteer_profiles (user_id, tasks, task_location, status)
+         VALUES ($1, $2, $3, $4)`,
+      [newUserId, "none", location || null, "pending approval"] // Handle optional values for age and location
     );
     // console.log(req.body);
     res.send("User Registered");

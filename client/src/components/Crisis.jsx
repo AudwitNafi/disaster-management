@@ -24,8 +24,10 @@ function Crisis({
   report_date,
   image_url,
   required_help,
+  role,
 }) {
   const date = day(report_date).format("MMM Do, YYYY");
+  console.log(role);
   return (
     <Wrapper>
       <img src={main} alt="main" />
@@ -40,16 +42,18 @@ function Crisis({
         <CrisisInfo icon={<FaCalendarAlt />} text={reported_by} />
         <div className={`status ${status}`}>{status}</div>
       </div>
-      <footer className="actions">
-        {/* <Link to={`../edit-job/${_id}`} className="btn edit-btn">
-          Edit
-        </Link>
-        <Form method="post" action={`../delete-job/${_id}`}>
-          <button type="submit" className="btn delete-btn">
-            Delete
-          </button>
-        </Form> */}
-      </footer>
+      {role === "admin" && (
+        <footer className="actions">
+          <Link to={`../edit-crisis/${id}`} className="btn edit-btn">
+            Edit
+          </Link>
+          <Form method="post" action={`../delete-crisis/${id}`}>
+            <button type="submit" className="btn delete-btn">
+              Delete
+            </button>
+          </Form>
+        </footer>
+      )}
     </Wrapper>
   );
 }

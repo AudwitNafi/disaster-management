@@ -69,7 +69,4 @@ export const validateCrisisInput = withValidationErrors([
   body("severity")
     .isIn(Object.values(SEVERITY))
     .withMessage("invalid severity value"),
-  body("status")
-    .isIn(Object.values(CRISIS_STATUS))
-    .withMessage("invalid status"),
 ]);

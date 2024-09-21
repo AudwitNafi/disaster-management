@@ -11,6 +11,7 @@ const Wrapper = styled.section`
   }
   .crisis {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
   }

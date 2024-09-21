@@ -40,10 +40,6 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-app.get("/api/v1/test", (req, res) => {
-  res.json({ msg: "Hello World" });
-});
-
 //dashboard or homepage
 app.post("/", (req, res) => {
   console.log(req);

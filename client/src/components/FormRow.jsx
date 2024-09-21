@@ -8,7 +8,7 @@ function FormRow({ type, name, labelText, defaultValue }) {
         type={type}
         id={name}
         name={name}
-        className="form-input"
+        className={type === "textarea" ? "text-area form-input" : "form-input"}
         defaultValue={defaultValue || ""}
         required
       />

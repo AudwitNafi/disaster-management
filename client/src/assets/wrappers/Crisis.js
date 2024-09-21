@@ -73,6 +73,28 @@ const Wrapper = styled.article`
     display: grid;
     align-items: center;
   }
+  .approved {
+    border-radius: var(--border-radius);
+    text-transform: capitalize;
+    letter-spacing: var(--letter-spacing);
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    display: grid;
+    align-items: center;
+    background-color: cyan;
+  }
+  .resolved {
+    border-radius: var(--border-radius);
+    text-transform: capitalize;
+    letter-spacing: var(--letter-spacing);
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    display: grid;
+    align-items: center;
+    background-color: #88d66c;
+  }
   .actions {
     margin-top: 1rem;
     display: flex;
@@ -84,9 +106,11 @@ const Wrapper = styled.article`
     font-size: 0.85rem;
     display: flex;
     align-items: center;
+    margin-bottom: 1rem;
   }
   .edit-btn {
     margin-right: 0.5rem;
+    margin-left: 1rem;
   }
   .description {
     margin-left: 0.8rem;

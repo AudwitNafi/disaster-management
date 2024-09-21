@@ -8,6 +8,7 @@ import { MdAdminPanelSettings } from "react-icons/md";
 import { IoMdHome } from "react-icons/io";
 import { FaDonate } from "react-icons/fa";
 import { MdInventory } from "react-icons/md";
+import { MdCrisisAlert } from "react-icons/md";
 
 const links = [
   {
@@ -18,7 +19,7 @@ const links = [
   {
     text: "Crises",
     path: "crisis",
-    icon: <IoBarChartSharp />,
+    icon: <MdCrisisAlert />,
   },
   {
     text: "Donations",

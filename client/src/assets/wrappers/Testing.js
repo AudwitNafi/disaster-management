@@ -30,6 +30,10 @@ const Wrapper = styled.main`
   .main-img {
     display: none;
   }
+  .text-area {
+    height: 100px;
+    vertical-align: top;
+  }
   @media (min-width: 992px) {
     .page {
       grid-template-columns: 1fr 1fr;

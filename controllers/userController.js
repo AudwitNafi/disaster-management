@@ -11,8 +11,13 @@ export const getCurrentUser = async (req, res) => {
 
 //admin route
 export const getStats = async (req, res) => {
-  const users = await pool.query("SELECT COUNT(id) FROM users");
-  res.status(200).json(users.rows[0]);
+  try {
+    const users = await pool.query("SELECT COUNT(id) FROM users");
+    res.status(200).json(users.rows[0]);
+  } catch (error) {
+    res.send(error);
+    console.log(error);
+  }
 };
 
 export const updateUser = async (req, res) => {};

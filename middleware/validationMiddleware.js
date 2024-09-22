@@ -47,7 +47,7 @@ export const validateRegisterInput = withValidationErrors([
     .notEmpty()
     .withMessage("phone number is required")
     .isNumeric()
-    .withMessage("invalid phone numbner format"),
+    .withMessage("invalid phone number format"),
   body("password")
     .notEmpty()
     .withMessage("password is required")
@@ -55,12 +55,32 @@ export const validateRegisterInput = withValidationErrors([
     .withMessage("password must be at least 8 characters long"),
 ]);
 
+export const validateUpdateUserInput = withValidationErrors([
+  body("firstName").notEmpty().withMessage("first name is required"),
+  body("lastName").notEmpty().withMessage("last name is required"),
+  body("username").notEmpty().withMessage("username is required"),
+  body("age")
+    .notEmpty()
+    .withMessage("age is required")
+    .isNumeric()
+    .withMessage("age must be a number"),
+  body("location").notEmpty().withMessage("location is required"),
+  body("email")
+    .notEmpty()
+    .withMessage("email is required")
+    .isEmail()
+    .withMessage("invalid email format"),
+  body("phoneNumber")
+    .notEmpty()
+    .withMessage("phone number is required")
+    .isNumeric()
+    .withMessage("invalid phone number format"),
+]);
+
 export const validateLoginInput = withValidationErrors([
   body("username").notEmpty().withMessage("username is required"),
   body("password").notEmpty().withMessage("password is required"),
 ]);
-
-export const validateUpdateUserInput = () => {};
 
 export const validateCrisisInput = withValidationErrors([
   body("title").notEmpty().withMessage("title is required"),

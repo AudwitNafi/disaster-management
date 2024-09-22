@@ -9,6 +9,7 @@ import { IoMdHome } from "react-icons/io";
 import { FaDonate } from "react-icons/fa";
 import { MdInventory } from "react-icons/md";
 import { MdCrisisAlert } from "react-icons/md";
+import { CiUser } from "react-icons/ci";
 
 const links = [
   {
@@ -22,6 +23,11 @@ const links = [
     icon: <MdCrisisAlert />,
   },
   {
+    text: "Volunteers",
+    path: "volunteers",
+    icon: <CiUser />,
+  },
+  {
     text: "Donations",
     path: "donation",
     icon: <FaDonate />,
@@ -33,7 +39,7 @@ const links = [
   },
   {
     text: "profile",
-    path: "profile",
+    path: `profile`,
     icon: <ImProfile />,
   },
   {

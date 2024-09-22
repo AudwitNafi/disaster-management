@@ -1,47 +1,40 @@
 import styled from "styled-components";
 
 const Wrapper = styled.main`
-  nav {
-    width: var(--fluid-width);
-    max-width: var(--max-width);
-    margin: 0 auto;
-    height: var(--nav-height);
+  .admin-container {
     display: flex;
-    align-items: center;
+    height: 100vh; /* Full viewport height */
   }
-  h4 {
-    margin-bottom: 20px;
+
+  .admin-sidebar {
+    width: 200px;
+    background-color: #2c3e50;
+    padding: 20px;
   }
-  .page {
-    min-height: calc(100vh - var(--nav-height));
-    display: grid;
-    align-items: center;
-    margin-top: -3rem;
+
+  .admin-sidebar ul {
+    list-style: none;
+    padding: 0;
   }
-  h1 {
-    font-weight: 700;
-    span {
-      color: var(--primary-500);
-    }
+
+  .admin-sidebar li {
+    margin-bottom: 15px;
   }
-  p {
-    color: var(--grey-600);
+
+  .admin-sidebar a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-weight: bold;
   }
-  .main-img {
-    display: none;
+
+  .admin-sidebar a.active {
+    color: #3498db;
   }
-  .text-area {
-    height: 100px;
-    vertical-align: top;
-  }
-  @media (min-width: 992px) {
-    .page {
-      grid-template-columns: 1fr 1fr;
-      column-gap: 3rem;
-    }
-    .main-img {
-      display: block;
-    }
+
+  .admin-main {
+    flex: 1;
+    padding: 20px;
+    background-color: #ecf0f1;
   }
 `;
 export default Wrapper;

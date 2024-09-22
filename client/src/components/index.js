@@ -13,3 +13,8 @@ export { default as CrisisInfo } from "./CrisisInfo";
 export { default as CrisisShort } from "./CrisisShort";
 export { default as StatsContainer } from "./StatsContainer";
 export { default as StatItem } from "./StatItem";
+export { default as DashboardCrisisContainer } from "./DashboardCrisisContainer";
+export { default as DonationForm } from "./DonationForm";
+export { default as VolunteerCard } from "./VolunteerCard";
+export { default as AdminVCard } from "./AdminVCard";
+export { default as pg } from "./Pagination";

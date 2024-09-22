@@ -2,15 +2,17 @@ import {
   FaLocationArrow,
   FaBriefcase,
   FaCalendarAlt,
+  FaUserAlt,
   // MdCrisisAlert,
 } from "react-icons/fa";
 import { Link, Form } from "react-router-dom";
 import Wrapper from "../assets/wrappers/Crisis";
 import CrisisInfo from "./CrisisInfo";
-import day from "dayjs";
-import advancedFormat from "dayjs/plugin/advancedFormat";
 import main from "../assets/images/landing-page.jpg";
+import tornado from "../assets/images/tornado.jpg";
+import day from "dayjs";
 
+import advancedFormat from "dayjs/plugin/advancedFormat";
 day.extend(advancedFormat);
 
 function Crisis({
@@ -20,6 +22,7 @@ function Crisis({
   location,
   severity,
   status,
+  assigned,
   reported_by,
   report_date,
   image_url,
@@ -27,19 +30,23 @@ function Crisis({
   role,
 }) {
   const date = day(report_date).format("MMM Do, YYYY");
-  console.log(role);
+  console.log(date);
+
   return (
     <Wrapper>
-      <img src={main} alt="main" />
+      <img src={tornado} alt="main" />
       <div className="info">
         <h5>{title}</h5>
-        <p>{severity}</p>
+        <p>
+          Severity:
+          <span className={`severity-${severity}`}>{severity}</span>
+        </p>
       </div>
       <div className="description">{description}</div>
       <div className="content-center">
         <CrisisInfo icon={<FaLocationArrow />} text={location} />
         <CrisisInfo icon={<FaCalendarAlt />} text={date} />
-        <CrisisInfo icon={<FaCalendarAlt />} text={reported_by} />
+        <CrisisInfo icon={<FaUserAlt />} text={assigned} />
         <div className={`status ${status}`}>{status}</div>
       </div>
       {role === "admin" && (

@@ -49,9 +49,9 @@ function Register() {
           type="text"
           name="phoneNumber"
           labelText="Phone Number"
-          defaultValue="Nafi"
+          defaultValue="135612623762476"
         />
-        <FormRow type="password" name="password" defaultValue="nafi123" />
+        <FormRow type="password" name="password" defaultValue="12345678" />
 
         <button type="submit" className="btn btn-block" disabled={isSubmitting}>
           {isSubmitting ? "SUBMITTING..." : "SIGN UP"}

@@ -18,10 +18,12 @@ CREATE TABLE users(
 -- Volunteer Profiles Table
 CREATE TABLE volunteer_profiles (
     user_id INTEGER PRIMARY KEY,
+    assigned_crisis INTEGER,
     tasks TEXT,
     task_location VARCHAR(255),
     status VARCHAR(20) NOT NULL CHECK (status IN ('pending approval', 'available', 'assigned')),
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (assigned_crisis) REFERENCES crises(id) ON DELETE SET NULL
 );
 
 -- Donations Table
@@ -39,11 +41,13 @@ CREATE TABLE crises (
     description TEXT,
     location VARCHAR(255),
     severity VARCHAR(20) NOT NULL CHECK (severity IN ('low', 'medium', 'high', 'critical')),
-    status VARCHAR(20) NOT NULL CHECK (status IN ('pending', 'approved', 'resolved')),
+    status VARCHAR(20) NOT NULL CHECK (status IN ('pending', 'approved')),
+    assigned VARCHAR(20) NOT NULL CHECK (assigned IN ('not assigned', 'assigned', 'resolved')),
     reported_by INTEGER,
     report_date TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     image_url VARCHAR(255),
     required_help TEXT,
+    required_funds DECIMAL(10, 2) NOT NULL CHECK (required_funds > 0),
     FOREIGN KEY (reported_by) REFERENCES users(id) ON DELETE SET NULL
 );
 

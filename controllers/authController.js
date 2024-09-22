@@ -26,6 +26,13 @@ export const register = async (req, res) => {
       return res.status(400).json({ error: "Username already exists." });
     }
     // Hash the password
+    //check if first user. make first user admin
+    const isFirstUser = await pool.query("SELECT COUNT(id) FROM users");
+    let role = "";
+    if (isFirstUser.rows[0].count < 1) role = "admin";
+    else role = "volunteer";
+    // console.log(isFirstUser.rows[0].count);
+    console.log(role);
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     const newUser = await pool.query(
@@ -39,19 +46,22 @@ export const register = async (req, res) => {
         email,
         phoneNumber,
         hashedPassword,
-        "volunteer",
+        role,
       ]
     );
 
     const newUserId = newUser.rows[0].id;
-    const newVolunteer = await pool.query(
-      `INSERT INTO volunteer_profiles (user_id, tasks, task_location, status)
-         VALUES ($1, $2, $3, $4)`,
-      [newUserId, "none", location || null, "pending approval"] // Handle optional values for age and location
-    );
+    if (role === "volunteer") {
+      const newVolunteer = await pool.query(
+        `INSERT INTO volunteer_profiles (user_id, assigned_crisis, tasks, task_location, status)
+           VALUES ($1, $2, $3, $4, $5)`,
+        [newUserId, null, "none", location || null, "pending approval"] // Handle optional values for age and location
+      );
+    }
     // console.log(req.body);
     res.send("User Registered");
-    // res.send(req.body);
+    // res.json(isFirstUser.rows[0]);
+    // // res.send(req.body);
   } catch (error) {
     console.log(`Server error: ${error.message}`);
     res.status(500).json({ error: "Server error" });

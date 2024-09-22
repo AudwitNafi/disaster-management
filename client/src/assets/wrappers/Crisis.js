@@ -36,10 +36,19 @@ const Wrapper = styled.article`
       margin-bottom: 0.5rem;
     }
     p {
-      margin: 0;
+      margin-top: 0.5rem;
       text-transform: capitalize;
       letter-spacing: var(--letter-spacing);
       color: var(--text-secondary-color);
+    }
+      severity-critical{
+      color: #dc3545;}
+      severity-high{
+      color: orange;}
+      severity-medium{
+      color: #ffc107;}
+      severity-low{
+      color: #28a745;}
     }
   }
   .info {
@@ -82,7 +91,8 @@ const Wrapper = styled.article`
     height: 30px;
     display: grid;
     align-items: center;
-    background-color: cyan;
+    background-color: #6CBEC7;
+    color: var(--grey-500);
   }
   .resolved {
     border-radius: var(--border-radius);
@@ -94,6 +104,7 @@ const Wrapper = styled.article`
     display: grid;
     align-items: center;
     background-color: #88d66c;
+    color: var(--grey-500);
   }
   .actions {
     margin-top: 1rem;

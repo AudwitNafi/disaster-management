@@ -5,17 +5,15 @@ const router = Router();
 
 import {
   getAllVolunteers,
-  createVolunteer,
+  getAvailableVolunteers,
   getVolunteer,
-  updateVolunteers,
-  deleteVolunteer,
+  approveVolunteers,
+  assignVolunteers,
 } from "../controllers/volunteerController.js";
 
-router.route("/").get(getAllVolunteers).post(createVolunteer);
-router
-  .route("/:id")
-  .get(getVolunteer)
-  .patch(updateVolunteers)
-  .delete(deleteVolunteer);
+router.route("/").get(getAllVolunteers);
+router.route("/available").get(getAvailableVolunteers);
+router.route("/:id").get(getVolunteer).patch(approveVolunteers);
+router.route("/assign/:id").patch(assignVolunteers);
 
 export default router;

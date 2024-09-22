@@ -1,13 +1,15 @@
 import Crisis from "./Crisis";
 import Wrapper from "../assets/wrappers/CrisisContainer";
 import { useAllCrisisContext } from "../pages/AllCrisis";
+import { useOutletContext } from "react-router-dom";
 
 function CrisisContainer() {
-  const { data, userData } = useAllCrisisContext();
-  const role = userData.role;
+  const { data } = useAllCrisisContext();
+  const { user } = useOutletContext();
+  const role = user.role;
   // console.log(role);
   const crises = data;
-  // console.log(crises);
+  console.log(crises);
   if (crises.length === 0) {
     return (
       <Wrapper>
@@ -15,10 +17,15 @@ function CrisisContainer() {
       </Wrapper>
     );
   }
+
+  const filteredCrises =
+    role !== "admin"
+      ? crises.filter((crisis) => crisis.status !== "pending")
+      : crises;
   return (
     <Wrapper>
       <div className="crisis">
-        {crises.map((crisis) => {
+        {filteredCrises.map((crisis) => {
           return <Crisis key={crisis.id} {...crisis} role={role} />;
         })}
       </div>

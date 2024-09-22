@@ -1,6 +1,11 @@
 export const CRISIS_STATUS = {
   PENDING: "pending",
-  ASSIGNED: "approved",
+  APPROVED: "approved",
+};
+
+export const CRISIS_ASSIGNED = {
+  NOT_ASSIGNED: "not assigned",
+  ASSIGNED: "assigned",
   RESOLVED: "resolved",
 };
 

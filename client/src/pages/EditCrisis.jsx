@@ -26,57 +26,45 @@ import { CRISIS_STATUS, SEVERITY } from "../../../utils/constants";
 export const loader = async ({ params }) => {
   try {
     // await queryClient.ensureQueryData(singleJobQuery(params.id));
-    const { data } = customFetch.get(`/crisis/${params.id}`);
+    const data = await customFetch(`/crisis/${params.id}`);
     // console.log(data);
-    // return data;
-    return null;
+    const crisis = data.data;
+    console.log(crisis);
+    return { crisis };
+    // return null;
   } catch (error) {
     toast.error(error?.response?.data?.msg);
     return redirect("/dashboard/crisis");
   }
 };
 
-//   (queryClient) =>
-//   async ({ params }) => {
-//     try {
-//       await queryClient.ensureQueryData(singleJobQuery(params.id));
-//       return params.id;
-//     } catch (error) {
-//       toast.error(error?.response?.data?.msg);
-//       return redirect('/dashboard/all-jobs');
-//     }
-//   };
-export const action =
-  //   (queryClient) =>
-  async ({ request, params }) => {
-    const formData = await request.formData();
-    const data = Object.fromEntries(formData);
-    try {
-      await customFetch.patch(`/crisis/${params.id}`, data);
-      //   queryClient.invalidateQueries(['jobs']);
+export const action = async ({ request, params }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  try {
+    await customFetch.patch(`/crisis/${params.id}`, data);
+    toast.success("Crisis edited successfully");
+    return redirect("/dashboard/crisis");
+  } catch (error) {
+    toast.error(error?.response?.data?.msg);
+    return error;
+  }
+};
 
-      toast.success("Crisis edited successfully");
-      return redirect("/dashboard/crisis");
-    } catch (error) {
-      toast.error(error?.response?.data?.msg);
-      return error;
-    }
-  };
-
-const EditJob = () => {
+const EditCrisis = () => {
   const navigation = useNavigation();
   // console.log(navigation);
   const isSubmitting = navigation.state == "submitting";
-  //   const { crisis } = useLoaderData();
-  //   console.log(crisis);
-  //   const id = useLoaderData();
+  const { crisis } = useLoaderData();
+  console.log(crisis);
+  // const id = useLoaderData();
   // const {
   //   data: { job },
   // } = useQuery(singleJobQuery(id));
   return (
     <Wrapper>
       <Form method="post" className="form">
-        <h4 className="form-title">Add Crisis</h4>
+        <h4 className="form-title">Edit Crisis</h4>
         <div className="form-center">
           {/* <FormRow type="text" name="title" />
           <FormRow type="textarea" name="description" /> */}
@@ -98,15 +86,15 @@ const EditJob = () => {
           <FormRowSelect
             labelText="Status"
             name="status"
-            defaultValue={"pending"}
+            defaultValue={crisis.status}
             list={Object.values(CRISIS_STATUS)}
           />
-          {/* <FormRowSelect
+          <FormRowSelect
             labelText="Severity"
             name="severity"
-            defaultValue="low"
+            defaultValue={crisis.severity}
             list={Object.values(SEVERITY)}
-          /> */}
+          />
           <button
             type="submit"
             className="btn btn-block"
@@ -119,4 +107,4 @@ const EditJob = () => {
     </Wrapper>
   );
 };
-export default EditJob;
+export default EditCrisis;

@@ -7,10 +7,11 @@ import {
 //verify whether the cookie is present
 export const authenticateUser = (req, res, next) => {
   const { token } = req.cookies;
-  if (!token) res.status(401).json({ error: "Token is not valid" });
+  if (!token) throw new UnauthenticatedError("authentication invalid");
   try {
     const { userId, role } = verifyJWT(token);
     // console.log(user);
+    // const testUser = userId === "testUserId"
     req.user = { userId, role };
     next();
   } catch (error) {

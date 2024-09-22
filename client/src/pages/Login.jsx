@@ -24,18 +24,41 @@ export const action = async ({ request }) => {
   }
 };
 
+// const check = async () => {
+//   const testUserExists = await customFetch.get("/users/check-test-user");
+//   console.log(testUserExists);
+// };
+
 function Login() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const navigation = useNavigation();
   const isSubmitting = navigation.state == "submitting";
   // const loginDemoUser = async () => {
   //   const data = {
-  //     email: "test@test.com",
+  //     firstName: "Test",
+  //     lastName: "User",
+  //     username: "anonymous user",
+  //     age: 23,
+  //     location: "Dhaka",
+  //     email: "test@gmail.com",
+  //     phoneNumber: "999",
   //     password: "secret123",
   //   };
   //   try {
-  //     await customFetch.post("/auth/login", data);
-  //     toast.success("Take a test drive");
+  //     const loginData = {};
+  //     loginData.username = data.username;
+  //     loginData.password = data.password;
+  //     //check if test user exists
+
+  //     console.log(testUserExists);
+  //     // if (testUserExists) {
+  //     //   await customFetch.post("/auth/login", loginData);
+  //     //   toast.success("You can browse our website anonymously!");
+  //     // } else {
+  //     //   await customFetch.post("/auth/register", data);
+  //     //   await customFetch.post("/auth/login", loginData);
+  //     //   toast.success("You can browse our website anonymously!");
+  //     // }
   //     navigate("/dashboard");
   //   } catch (error) {
   //     toast.error(error?.response?.data?.msg);
@@ -52,7 +75,7 @@ function Login() {
         <button type="submit" className="btn btn-block" disabled={isSubmitting}>
           {isSubmitting ? "Signing in" : "Sign in"}
         </button>
-        {/* <button type="button" className="btn btn-block" onClick={loginDemoUser}>
+        {/* <button type="button" className="btn btn-block" onClick={check}>
           explore the app
         </button> */}
         <p>

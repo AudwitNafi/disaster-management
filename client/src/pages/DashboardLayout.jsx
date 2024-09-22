@@ -21,10 +21,6 @@ function DashboardLayout() {
   const user = useLoaderData();
 
   const navigate = useNavigate();
-  // console.log(user);
-
-  // //temp user
-  // const user = { name: "Nafi" };
 
   const [showSidebar, setShowSidebar] = useState(false);
 

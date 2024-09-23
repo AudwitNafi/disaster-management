@@ -1,9 +1,13 @@
 import { toast } from "react-toastify";
 import Wrapper from "../assets/wrappers/Home";
 import customFetch from "../utils/customFetch";
-import { CrisisShort, DashboardCrisisContainer } from "../components";
+import {
+  AdminVCard,
+  CrisisShort,
+  DashboardCrisisContainer,
+} from "../components";
 import { createContext, useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useOutletContext } from "react-router-dom";
 
 export const loader = async () => {
   try {
@@ -26,7 +30,8 @@ export const loader = async () => {
 // const AllDashboardContext = createContext();
 function Dashboard() {
   const { recentCrises, availableVolunteers, donationData } = useLoaderData();
-  console.log(donationData.sum);
+  console.log(availableVolunteers);
+  const { user } = useOutletContext();
   return (
     // <AllDashboardContext.Provider
     //   values={{ recentCrises, availableVolunteers }}
@@ -41,12 +46,14 @@ function Dashboard() {
       </div>
       <div className="crisis-volunteer-container">
         <DashboardCrisisContainer
-          values={{ recentCrises, availableVolunteers }}
+          values={{ recentCrises, availableVolunteers, user }}
         />
         <div className="cv-container">
           <h3>Volunteers</h3>
           <h4>
-            For Full list of available volunteers navigate to Volunteers Section
+            {availableVolunteers.map((volunteer) => {
+              <AdminVCard key={volunteer.id} volunteer={volunteer} />;
+            })}
           </h4>
         </div>
       </div>

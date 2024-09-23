@@ -22,23 +22,32 @@ export const action = async ({ request }) => {
 const Profile = () => {
   const { user } = useOutletContext();
 
-  const { firstName, lastName, username, age, location, email, phoneNumber } =
-    user;
+  const {
+    first_name,
+    last_name,
+    username,
+    age,
+    location,
+    email,
+    phone_number,
+  } = user;
 
   return (
     <Wrapper>
+      <h4>Your Profile</h4>
+      <p>Change Your Profile in the Form Below</p>
       <Form method="post" className="form">
         <FormRow
           type="text"
           name="firstName"
           labelText="First Name"
-          defaultValue={firstName}
+          defaultValue={first_name}
         />
         <FormRow
           type="text"
           name="lastName"
           labelText="Last Name"
-          defaultValue={lastName}
+          defaultValue={last_name}
         />
         <FormRow type="text" name="username" defaultValue={username} />
         <FormRow type="number" name="age" defaultValue={age} />
@@ -48,7 +57,7 @@ const Profile = () => {
           type="text"
           name="phoneNumber"
           labelText="Phone Number"
-          defaultValue={phoneNumber}
+          defaultValue={phone_number}
         />
 
         <SubmitBtn />

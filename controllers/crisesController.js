@@ -17,6 +17,18 @@ export const getRecentCrises = async (req, res) => {
   }
 };
 
+export const getApprovedCrises = async (req, res) => {
+  try {
+    const approvedCrises = await pool.query(
+      "SELECT * FROM crises WHERE status='approved'"
+    );
+    res.status(200).json(approvedCrises.rows);
+  } catch (error) {
+    console.log(`Server error: ${error.message}`);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
 export const getCrisis = async (req, res) => {
   try {
     const { id } = req.params;

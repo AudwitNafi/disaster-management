@@ -1,13 +1,13 @@
 import { toast } from "react-toastify";
 import customFetch from "../utils/customFetch";
-import { Form, redirect, useLoaderData, useNavigation } from "react-router-dom";
-import { createContext, useContext } from "react";
 import {
-  DonationForm,
-  DonationsTable,
-  StatsContainer,
-  SubmitBtn,
-} from "../components";
+  Form,
+  redirect,
+  useLoaderData,
+  useOutletContext,
+} from "react-router-dom";
+import { createContext, useContext } from "react";
+import { DonationsTable, StatsContainer, SubmitBtn } from "../components";
 import Wrapper from "../assets/wrappers/DonationForm";
 
 export const loader = async () => {
@@ -16,7 +16,7 @@ export const loader = async () => {
     const totalexpense = await customFetch("/donations/expenses");
     // console.log(data);
     const { sum } = totalexpense.data;
-    console.log(sum);
+    // console.log(sum);
     return { data, sum };
   } catch (error) {
     toast.error(error?.response?.data?.msg);
@@ -41,7 +41,9 @@ export const action = async ({ request }) => {
 const AllDonationsContext = createContext();
 function Donation() {
   const { data, sum } = useLoaderData();
-  console.log(data);
+  const { user } = useOutletContext();
+  // console.log(user);
+  // console.log(data);
   // const navigation = useNavigation();
   // const isSubmitting = navigation.state == "submitting";
   return (
@@ -79,6 +81,11 @@ function Donation() {
                 id="name"
                 name="donorName"
                 placeholder="Your full name"
+                defaultValue={
+                  user.first_name
+                    ? `${user.first_name} ${user.last_name}`
+                    : null
+                }
                 required
               />
             </div>

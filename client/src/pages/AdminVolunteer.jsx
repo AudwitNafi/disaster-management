@@ -46,7 +46,7 @@ function AdminVolunteer() {
   // Calculate total pages
 
   const [currentPage, setCurrentPage] = useState(1);
-  const volunteersPerPage = 5;
+  const volunteersPerPage = 6;
 
   const totalPages = Math.ceil(volunteers.length / volunteersPerPage);
   // Handle page change

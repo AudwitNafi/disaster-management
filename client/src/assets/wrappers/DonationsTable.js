@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 const Wrapper = styled.aside`
+  h5 {
+    text-align: center;
+    margin: 0.5rem;
+  }
   .donations-table__container {
     width: 100%;
     max-width: 1000px;
@@ -28,6 +32,7 @@ const Wrapper = styled.aside`
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #dddddd;
+    cursor: pointer;
   }
 
   .donations-table th {

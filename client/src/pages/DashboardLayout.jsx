@@ -9,6 +9,7 @@ export const loader = async () => {
   try {
     const { data } = await customFetch.get("/users/current-user");
     return data;
+    console.log(data);
   } catch (error) {
     return redirect("/");
   }

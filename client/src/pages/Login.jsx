@@ -19,7 +19,8 @@ export const action = async ({ request }) => {
     toast.success("Login successful");
     return redirect("/dashboard");
   } catch (error) {
-    toast.error(error?.response?.data?.msg);
+    // toast.error(error?.response?.data?.msg);
+    toast.error("Invalid Credentials");
     return error;
   }
 };
@@ -69,7 +70,7 @@ function Login() {
       <Form method="post" className="form">
         <Logo />
         <h4>Login</h4>
-        <FormRow type="text" name="username" defaultValue="ayush" />
+        <FormRow type="text" name="username" defaultValue="audwitnafi" />
         <FormRow type="password" name="password" defaultValue="12345678" />
         {/* <SubmitBtn /> */}
         <button type="submit" className="btn btn-block" disabled={isSubmitting}>

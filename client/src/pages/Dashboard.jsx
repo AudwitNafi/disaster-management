@@ -5,9 +5,11 @@ import {
   AdminVCard,
   CrisisShort,
   DashboardCrisisContainer,
+  VolunteerCard,
 } from "../components";
 import { createContext, useContext } from "react";
-import { useLoaderData, useOutletContext } from "react-router-dom";
+import { Link, useLoaderData, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const loader = async () => {
   try {
@@ -18,7 +20,7 @@ export const loader = async () => {
     const availableVolunteers = volunteersData.data;
     const donationData = donation.data;
     // console.log(recentCrises);
-    console.log(volunteersData);
+    // console.log(volunteersData);
     return { recentCrises, availableVolunteers, donationData };
     // return null;
   } catch (error) {
@@ -27,15 +29,12 @@ export const loader = async () => {
   }
 };
 
-// const AllDashboardContext = createContext();
 function Dashboard() {
+  const navigate = useNavigate();
   const { recentCrises, availableVolunteers, donationData } = useLoaderData();
   console.log(availableVolunteers);
   const { user } = useOutletContext();
   return (
-    // <AllDashboardContext.Provider
-    //   values={{ recentCrises, availableVolunteers }}
-    // >
     <Wrapper>
       <div className="funds">
         <div className="title">Total Funds</div>
@@ -45,16 +44,15 @@ function Dashboard() {
         </div>
       </div>
       <div className="crisis-volunteer-container">
-        <DashboardCrisisContainer
-          values={{ recentCrises, availableVolunteers, user }}
-        />
-        <div className="cv-container">
-          <h3>Volunteers</h3>
-          <h4>
-            {availableVolunteers.map((volunteer) => {
-              <AdminVCard key={volunteer.id} volunteer={volunteer} />;
-            })}
-          </h4>
+        <DashboardCrisisContainer values={{ recentCrises, user }} />
+        <div className="volunteer-container">
+          <h3>Available Volunteers</h3>
+
+          {availableVolunteers.map((volunteer) => {
+            return (
+              <AdminVCard key={volunteer.id} volunteer={volunteer} page="" />
+            );
+          })}
         </div>
       </div>
     </Wrapper>

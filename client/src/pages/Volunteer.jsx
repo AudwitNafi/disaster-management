@@ -60,7 +60,7 @@ const PageButton = styled.button`
 
 export const loader = async () => {
   try {
-    const data = await customFetch("/volunteers/available");
+    const data = await customFetch("/volunteers");
     const volunteers = data.data;
     // console.log(volunteers);
     return volunteers;
@@ -100,7 +100,7 @@ function Volunteer() {
   return (
     <>
       <h1>Volunteers</h1>
-      <h3>Here are the list of available volunteers!</h3>
+      {/* <h3>Here is the list of volunteers!</h3> */}
       <VolunteersContainer>
         {currentVolunteers.map((volunteer) => (
           <VolunteerCard key={volunteer.id} volunteer={volunteer} />

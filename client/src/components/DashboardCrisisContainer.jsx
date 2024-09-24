@@ -64,6 +64,7 @@ function DashboardCrisisContainer({ values }) {
   return (
     <div ref={containerRef}>
       <Wrapper>
+        <h3>Recent Crises</h3>
         {filteredCrises.map((crisis) => {
           return <CrisisShort style={itemStyle} key={crisis.id} {...crisis} />;
         })}

@@ -72,7 +72,9 @@ function AdminVolunteer() {
   return (
     <VolunteersContainer>
       {currentVolunteers.map((volunteer) => {
-        return <AdminVCard key={volunteer.id} volunteer={volunteer} />;
+        return (
+          <AdminVCard key={volunteer.id} volunteer={volunteer} page="admin" />
+        );
       })}
       <PaginationContainer>
         <PageButton onClick={goToPreviousPage} disabled={currentPage === 1}>

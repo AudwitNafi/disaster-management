@@ -3,7 +3,7 @@ import pool from "../db.js";
 export const getAllVolunteers = async (req, res) => {
   try {
     const volunteers = await pool.query(
-      "SELECT id, first_name, last_name, username, email, age, tasks, assigned_crisis_title, task_location, status FROM volunteer_profiles, users where users.id=volunteer_profiles.user_id"
+      "SELECT id, first_name, last_name, username, email, phone_number, age, tasks, assigned_crisis_title, task_location, status FROM volunteer_profiles, users where users.id=volunteer_profiles.user_id"
     );
     res.status(200).json(volunteers.rows);
   } catch (error) {
@@ -15,7 +15,7 @@ export const getAllVolunteers = async (req, res) => {
 export const getAvailableVolunteers = async (req, res) => {
   try {
     const availableVolunteers = await pool.query(
-      "SELECT id, first_name, last_name, username, email, phone_number, age, tasks, assigned_crisis_title, task_location, status FROM volunteer_profiles, users where users.id=volunteer_profiles.user_id and status='available'"
+      "SELECT id, first_name, last_name, username, email, phone_number, age, tasks, assigned_crisis_title, task_location, status FROM volunteer_profiles, users where users.id=volunteer_profiles.user_id and status='available'LIMIT 10"
     );
     res.status(200).json(availableVolunteers.rows);
   } catch (error) {

@@ -5,6 +5,7 @@ import {
   FaUserAlt,
   // MdCrisisAlert,
 } from "react-icons/fa";
+import { GiMoneyStack } from "react-icons/gi";
 import { Link, Form } from "react-router-dom";
 import Wrapper from "../assets/wrappers/Crisis";
 import CrisisInfo from "./CrisisInfo";
@@ -27,6 +28,7 @@ function Crisis({
   report_date,
   image_url,
   required_help,
+  required_funds,
   role,
 }) {
   const date = day(report_date).format("MMM Do, YYYY");
@@ -46,7 +48,7 @@ function Crisis({
       <div className="content-center">
         <CrisisInfo icon={<FaLocationArrow />} text={location} />
         <CrisisInfo icon={<FaCalendarAlt />} text={date} />
-        <CrisisInfo icon={<FaUserAlt />} text={assigned} />
+        <CrisisInfo icon={<GiMoneyStack />} text={`BDT ${required_funds}`} />
         <div className={`status ${status}`}>{status}</div>
       </div>
       {role === "admin" && (

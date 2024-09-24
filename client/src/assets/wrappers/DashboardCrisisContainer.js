@@ -13,5 +13,8 @@ const Wrapper = styled.section`
     padding: 40px 20px;
     gap: 10px;
   }
+  h3 {
+    margin: 20px;
+  }
 `;
 export default Wrapper;

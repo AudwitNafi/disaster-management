@@ -50,6 +50,19 @@ const Wrapper = styled.section`
     gap: 10px;
   }
 
+  .volunteer-container {
+    width: 800px;
+
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    background: var(--background-secondary-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-2);
+
+    gap: 10px;
+  }
+
   .cv-container h2 {
     text-align: center;
     margin-bottom: 30px;

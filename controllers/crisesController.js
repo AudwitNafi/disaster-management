@@ -70,7 +70,7 @@ export const createCrisis = async (req, res) => {
         "pending",
         "not assigned",
         newCrisis.reportedBy,
-        "image_url",
+        newCrisis.avatar,
         requiredHelp,
         requiredFunds,
       ]

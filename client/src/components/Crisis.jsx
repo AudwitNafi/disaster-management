@@ -12,6 +12,7 @@ import CrisisInfo from "./CrisisInfo";
 import main from "../assets/images/landing-page.jpg";
 import tornado from "../assets/images/tornado.jpg";
 import day from "dayjs";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 import advancedFormat from "dayjs/plugin/advancedFormat";
 day.extend(advancedFormat);
@@ -34,9 +35,19 @@ function Crisis({
   const date = day(report_date).format("MMM Do, YYYY");
   console.log(date);
 
+  const fixedImageUrl = image_url
+    ? `${backendUrl}${image_url.replace(/\\/g, "/").replace(/^public\//, "/")}`
+    : null;
+
+  console.log(fixedImageUrl);
+
   return (
     <Wrapper>
-      <img src={tornado} alt="main" />
+      <img
+        src={fixedImageUrl}
+        style={{ width: "100%", height: "250px" }}
+        alt="main"
+      />
       <div className="info">
         <h5>{title}</h5>
         <p>
